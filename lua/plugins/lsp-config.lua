@@ -20,9 +20,14 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.ts_ls.setup({})
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.ts_ls.setup({
+				capabilities = capabilities,
+			})
 
 			local pid = vim.fn.getpid()
 			local omnisharp_bin = "C:\\Users\\phoen\\AppData\\Local\\bin\\omnisharp-roslyn\\Omnisharp.exe"
@@ -33,6 +38,7 @@ return {
 					"--hostPID",
 					tostring(pid),
 				},
+				capabilities = capabilities,
 			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
