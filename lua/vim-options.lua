@@ -1,7 +1,8 @@
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 
-vim.g.mapleader=" "
+vim.g.mapleader = " "
+vim.g.have_nerd_font = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -19,4 +20,4 @@ vim.opt.listchars = {
 	tab = "| ",
 }
 
-vim.keymap.set('n', '<Esc>', "<cmd>noh\n")
+vim.keymap.set("n", "<Esc>", "<cmd>noh\n")

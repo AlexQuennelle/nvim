@@ -8,10 +8,10 @@ return {
 				"lua",
 				"cpp",
 				"c_sharp",
-				"javascript"
+				"javascript",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
 		})
-	end
+	end,
 }

@@ -8,11 +8,11 @@ return {
 		"3rd/image.nvim",
 	},
 	config = function()
-		vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left\n')
+		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left\n")
 		require("neo-tree").setup({
 			filesystem = {
 				hijack__netrw_behaviour = "open_current",
 			},
 		})
-	end
+	end,
 }
