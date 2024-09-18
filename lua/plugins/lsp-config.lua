@@ -12,7 +12,7 @@ return {
 				ensure_intsalled = {
 					"lua_ls",
 					"ts_ls",
-					--"omnisharp",
+					"omnisharp",
 				},
 			})
 		end,
@@ -29,16 +29,27 @@ return {
 				capabilities = capabilities,
 			})
 
+			local os = require("os")
+			local omnisharpPath = os.getenv("OmniSharp")
 			local pid = vim.fn.getpid()
-			local omnisharp_bin = "C:\\Users\\phoen\\AppData\\Local\\bin\\omnisharp-roslyn\\Omnisharp.exe"
+			--local omnisharp_bin = "C:\\Users\\Alex Quennelle\\AppData\\Local\\bin\\omnisharp-roslyn\\Omnisharp.exe"
 			lspconfig.omnisharp.setup({
 				cmd = {
-					omnisharp_bin,
+					omnisharpPath,
+					--omnisharp_bin,
 					"--languageserver",
 					"--hostPID",
 					tostring(pid),
+					--"OmniSharp",
+					--vim.fn.stdpath("data") .. "\\mason\\packages\\omnisharp\\libexec\\OmniSharp.exe",
 				},
 				capabilities = capabilities,
+				enable_import_completion = true,
+				organize_imports_on_format = true,
+				enable_roslyn_analuzers = true,
+				root_dir = function()
+					return vim.loop.cwd()
+				end,
 			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
