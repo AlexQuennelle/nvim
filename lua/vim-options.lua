@@ -32,12 +32,6 @@ vim.opt.listchars = {
 }
 
 --keymaps
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "<C-l>", function()
-	YoinkL()
-end)
-
-function YoinkL()
-	--vim.cmd("")
-end
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+--vim.keymap.set("v", "L", "xaa<ESC>vpgv")

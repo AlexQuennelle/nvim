@@ -4,8 +4,8 @@ return {
 		require("autoclose").setup({
 			keys = {
 				[">"] = {
-					escape = true,
-					close = true,
+					escape = false,
+					close = false,
 					pair = "<>",
 					disabled_filetypes = {},
 				},
