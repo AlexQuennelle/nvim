@@ -35,17 +35,26 @@ return {
 			--local omnisharp_bin = "C:\\Users\\Alex Quennelle\\AppData\\Local\\bin\\omnisharp-roslyn\\Omnisharp.exe"
 			lspconfig.omnisharp.setup({
 				cmd = {
+					--"OmniSharp",
 					omnisharpPath,
-					--omnisharp_bin,
-					"--languageserver",
-					"--hostPID",
-					tostring(pid),
+					--"--languageserver",
+					--"--hostPID",
+					--tostring(pid),
 					--"OmniSharp",
 					--vim.fn.stdpath("data") .. "\\mason\\packages\\omnisharp\\libexec\\OmniSharp.exe",
+					--"--languageserver FormattingOptions:OrganizeImports=true",
+					--"--languageserver FormattingOptions:UseTabs=true"
+				},
+				settings = {
+					FormattingOptions = {
+						EnableEditorConfigSupport = false,
+						OrganizeImports = true,
+						UseTabs = true,
+					},
 				},
 				capabilities = capabilities,
 				enable_import_completion = true,
-				organize_imports_on_format = true,
+				--organize_imports_on_format = true,
 				enable_roslyn_analuzers = true,
 				root_dir = function()
 					return vim.loop.cwd()
