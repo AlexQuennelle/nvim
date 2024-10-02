@@ -7,6 +7,7 @@ return {
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 	},
 	{
@@ -36,6 +37,7 @@ return {
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
+					{ name = "nvim_lsp_signature_help" },
 				}),
 			})
 		end,
