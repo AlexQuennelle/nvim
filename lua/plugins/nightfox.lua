@@ -9,8 +9,7 @@ return {
 				styles = {
 					comments = "italic",
 					keywords = "bold",
-					types = "italic,bold",
-					variables = "italic",
+					types = "underline,bold",
 				},
 			},
 		})
