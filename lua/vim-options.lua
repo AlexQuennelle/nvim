@@ -31,10 +31,12 @@ vim.opt.listchars = {
 	tab = "| ",
 }
 
-vim.opt.fillchars = { fold = " " }
-vim.opt.foldmethod = "indent"
-vim.opt.foldenable = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 1
+vim.opt.foldnestmax = 4
+vim.opt.fillchars = { fold = " " }
 
 --keymaps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
