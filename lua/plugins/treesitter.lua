@@ -9,6 +9,7 @@ return {
 				"cpp",
 				"c_sharp",
 				"javascript",
+				"glsl",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },

@@ -38,6 +38,13 @@ vim.opt.foldlevelstart = 1
 vim.opt.foldnestmax = 4
 vim.opt.fillchars = { fold = " " }
 
+vim.filetype.add({
+	extension = {
+		vert = "glsl",
+		frag = "glsl",
+	},
+})
+
 --keymaps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
