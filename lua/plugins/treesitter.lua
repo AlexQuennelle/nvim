@@ -14,5 +14,11 @@ return {
 			highlight = { enable = true },
 			indent = { enable = true },
 		})
+		vim.treesitter.language.register("glsl", "vert")
+		vim.treesitter.language.register("glsl", "frag")
+		vim.treesitter.language.register("glsl", "tesc")
+		vim.treesitter.language.register("glsl", "tese")
+		vim.treesitter.language.register("glsl", "geom")
+		vim.treesitter.language.register("glsl", "comp")
 	end,
 }

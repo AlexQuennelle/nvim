@@ -40,8 +40,12 @@ vim.opt.fillchars = { fold = " " }
 
 vim.filetype.add({
 	extension = {
-		vert = "glsl",
-		frag = "glsl",
+		vert = "vert",
+		frag = "frag",
+		tesc = "tesc",
+		tese = "tese",
+		geom = "geom",
+		comp = "comp",
 	},
 })
 
