@@ -12,6 +12,11 @@ return {
 					types = "underline,bold",
 				},
 			},
+			palettes = {
+				all = {
+					comment = "#3f802d",
+				},
+			},
 		})
 		vim.cmd.colorscheme("carbonfox")
 	end,
