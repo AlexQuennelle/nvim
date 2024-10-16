@@ -46,6 +46,8 @@ vim.filetype.add({
 		tese = "tese",
 		geom = "geom",
 		comp = "comp",
+		meta = "yaml",
+		inputactions = "json",
 	},
 })
 
