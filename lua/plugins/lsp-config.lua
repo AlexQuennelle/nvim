@@ -9,13 +9,20 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_intsalled = {
+				ensure_installed = {
 					"lua_ls",
 					"ts_ls",
 					"omnisharp",
 					"clangd",
 					"glsl_analyzer",
+					"html",
+					"tailwindcss",
+					-- Formatters --
+					"eslint_d",
+					"prettierd",
+					"stylua",
 				},
+				automatic_installation = true,
 			})
 		end,
 	},
@@ -46,9 +53,8 @@ return {
 				},
 				settings = {
 					FormattingOptions = {
-						EnableEditorConfigSupport = false,
+						EnableEditorConfigSupport = true,
 						OrganizeImports = true,
-						UseTabs = true,
 					},
 				},
 				capabilities = capabilities,
