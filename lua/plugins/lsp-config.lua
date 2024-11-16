@@ -18,9 +18,9 @@ return {
 					"html",
 					"tailwindcss",
 					-- Formatters --
-					"eslint_d",
-					"prettierd",
-					"stylua",
+					--"eslint_d",
+					--"prettierd",
+					--"stylua",
 				},
 				automatic_installation = true,
 			})
