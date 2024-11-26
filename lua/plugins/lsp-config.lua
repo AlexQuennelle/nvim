@@ -51,12 +51,12 @@ return {
 				cmd = {
 					omnisharpPath,
 				},
-				settings = {
-					FormattingOptions = {
-						EnableEditorConfigSupport = true,
-						OrganizeImports = true,
-					},
-				},
+				-- settings = {
+				-- 	formattingOptions = {
+				-- 		enableEditorConfigSupport = true,
+				-- 		-- organizeImports = true,
+				-- 	},
+				-- },
 				capabilities = capabilities,
 				enable_import_completion = true,
 				organize_imports_on_format = true,
