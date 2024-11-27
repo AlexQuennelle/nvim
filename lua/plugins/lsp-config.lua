@@ -44,6 +44,9 @@ return {
 			lspconfig.glsl_analyzer.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.jsonls.setup({
+				capabilities = capabilities,
+			})
 
 			local os = require("os")
 			local omnisharpPath = os.getenv("OmniSharp")
