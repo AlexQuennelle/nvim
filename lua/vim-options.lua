@@ -28,7 +28,8 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = "| ",
+	--tab = "┃ ",
+	tab = "┆ ",
 }
 
 vim.opt.foldmethod = "expr"
