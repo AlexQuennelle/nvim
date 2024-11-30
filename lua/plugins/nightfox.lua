@@ -33,7 +33,7 @@ return {
 					},
 					Struct = {
 						fg = "#388828",
-						sytle = "bold,underline",
+						style = "bold,underline",
 					},
 					Function = {
 						fg = "#2560aa",
