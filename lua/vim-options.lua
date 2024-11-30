@@ -39,6 +39,8 @@ vim.opt.foldlevelstart = 1
 vim.opt.foldnestmax = 4
 vim.opt.fillchars = { fold = " " }
 
+--vim.highlight.priorities.semantic_tokens = 95
+
 vim.filetype.add({
 	extension = {
 		vert = "vert",

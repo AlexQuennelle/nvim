@@ -20,7 +20,7 @@ return {
 			specs = {
 				all = {
 					syntax = {
-						builtin1 = "#3882e2",
+						builtin1 = "#2560aa",
 						variable = "#d0efff",
 					},
 				},
@@ -31,29 +31,27 @@ return {
 						fg = "fg2",
 						style = "italic",
 					},
+					Struct = {
+						fg = "#388828",
+						sytle = "bold,underline",
+					},
+					Function = {
+						fg = "#2560aa",
+						style = "bold",
+					},
 				},
 			},
 		})
 		vim.cmd.colorscheme("carbonfox")
-		vim.api.nvim_create_autocmd("LspTokenUpdate", {
-			callback = function(args)
-				local token = args.data.token
-				if token.type == "variable" and not token.modifiers.readonly then
-					vim.lsp.semantic_tokens.highlight_token(
-						token,
-						args.buf,
-						args.data.client_id,
-						{
-							line = token.line,
-							start_col = token.start_col,
-							end_col = token.end_col,
-							type = "@type",
-							modifiers = token.modifiers,
-							client_id = token.client_id,
-						}
-					)
-				end
-			end,
-		})
+
+		--Autocmd example
+		--vim.api.nvim_create_autocmd("LspTokenUpdate", {
+		--	callback = function(args)
+		--		local token = args.data.token
+		--		if token.type == "keyword" then
+		--			vim.lsp.semantic_tokens.highlight_token(token, args.buf, args.data.client_id, "PreProc")
+		--		end
+		--	end,
+		--})
 	end,
 }
