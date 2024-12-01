@@ -14,7 +14,8 @@ return {
 			},
 			palettes = {
 				all = {
-					comment = "#3f802d",
+					comment = "#276013",
+					--comment = "#3f802d",
 				},
 			},
 			specs = {
@@ -32,12 +33,13 @@ return {
 						style = "italic",
 					},
 					Struct = {
-						fg = "#388828",
+						fg = "#68b858",
 						style = "bold,underline",
 					},
 					Function = {
-						fg = "#2560aa",
-						style = "bold",
+						link = "keyword",
+						--fg = "#2560aa",
+						--style = "bold",
 					},
 				},
 			},
