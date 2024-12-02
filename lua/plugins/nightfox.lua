@@ -45,6 +45,9 @@ return {
 			},
 		})
 		vim.cmd.colorscheme("carbonfox")
+		vim.api.nvim_set_hl(0, "@tag.delimiter.html", { link = "@punctuation" })
+		vim.api.nvim_set_hl(0, "@variable.parameter", { link = "@variable.member" })
+		vim.api.nvim_set_hl(0, "@parameter", { link = "@variable.parameter" })
 
 		--Autocmd example
 		--vim.api.nvim_create_autocmd("LspTokenUpdate", {
