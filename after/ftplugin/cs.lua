@@ -5,6 +5,7 @@ vim.opt.expandtab = false
 
 --highlight groups
 vim.api.nvim_set_hl(0, "@comment.documentation.c_sharp", { fg = "#274813" })
+vim.api.nvim_set_hl(0, "@lsp.type.xmlDocCommentText.cs", { link = "comment" })
 vim.api.nvim_set_hl(0, "@keyword.modifier.c_sharp", { fg = "#2560aa", bold = true })
 vim.api.nvim_set_hl(0, "@lsp.type.keyword.cs", {})
 vim.api.nvim_set_hl(0, "@lsp.type.struct.cs", { link = "Struct" })
