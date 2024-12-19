@@ -5,6 +5,15 @@ return {
 			require("mason").setup()
 		end,
 	},
+	--{
+	--	"jay-babu/mason-nvim-dap.nvim",
+	--	config = function()
+	--		require("mason-nvim-dap").setup({
+	--			ensure_installed = { "codelldb" },
+	--			automatic_installation = true,
+	--		})
+	--	end,
+	--},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
