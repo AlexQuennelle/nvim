@@ -1,8 +1,8 @@
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = false
-vim.opt.colorcolumn = "80"
+vim.opt_local.tabstop = 4
+vim.opt_local.softtabstop = 4
+vim.opt_local.shiftwidth = 4
+vim.opt_local.expandtab = false
+vim.opt_local.colorcolumn = "80"
 
 --highlight groups
 vim.api.nvim_set_hl(0, "@comment.documentation.c_sharp", { fg = "#274813" })
