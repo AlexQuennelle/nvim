@@ -56,6 +56,9 @@ return {
 			lspconfig.jsonls.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.hls.setup({
+				capabilities = capabilities,
+			})
 
 			local os = require("os")
 			local omnisharpPath = os.getenv("OmniSharp")
