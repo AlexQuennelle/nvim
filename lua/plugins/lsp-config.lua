@@ -57,11 +57,9 @@ return {
 				capabilities = capabilities,
 			})
 
-			local os = require("os")
-			local omnisharpPath = os.getenv("OmniSharp")
 			lspconfig.omnisharp.setup({
 				cmd = {
-					omnisharpPath,
+					"omnisharp",
 				},
 				-- settings = {
 				-- 	formattingOptions = {
