@@ -56,6 +56,9 @@ return {
 			lspconfig.jsonls.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.hls.setup({
+				capabilities = capabilities,
+			})
 
 			lspconfig.omnisharp.setup({
 				cmd = {
