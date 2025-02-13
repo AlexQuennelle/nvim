@@ -5,15 +5,6 @@ return {
 			require("mason").setup()
 		end,
 	},
-	--{
-	--	"jay-babu/mason-nvim-dap.nvim",
-	--	config = function()
-	--		require("mason-nvim-dap").setup({
-	--			ensure_installed = { "codelldb" },
-	--			automatic_installation = true,
-	--		})
-	--	end,
-	--},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
@@ -26,10 +17,7 @@ return {
 					"glsl_analyzer",
 					"html",
 					"tailwindcss",
-					-- Formatters --
-					--"eslint_d",
-					--"prettierd",
-					--"stylua",
+					"eslint",
 				},
 				automatic_installation = true,
 			})
@@ -76,12 +64,6 @@ return {
 				cmd = {
 					"omnisharp",
 				},
-				-- settings = {
-				-- 	formattingOptions = {
-				-- 		enableEditorConfigSupport = true,
-				-- 		-- organizeImports = true,
-				-- 	},
-				-- },
 				capabilities = capabilities,
 				enable_import_completion = true,
 				organize_imports_on_format = true,

@@ -40,8 +40,6 @@ vim.opt.foldlevelstart = -1
 vim.opt.foldnestmax = 4
 vim.opt.fillchars = { fold = " " }
 
---vim.highlight.priorities.semantic_tokens = 95
-
 vim.filetype.add({
 	extension = {
 		vert = "vert",
@@ -58,4 +56,3 @@ vim.filetype.add({
 --keymaps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
---vim.keymap.set("v", "L", "xaa<ESC>vpgv")
