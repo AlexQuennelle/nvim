@@ -59,6 +59,18 @@ return {
 			lspconfig.hls.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.eslint.setup({
+				settings = {
+					packageManager = "npm",
+				},
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "EslintFixAll",
+					})
+				end,
+				capabilities = capabilities,
+			})
 
 			lspconfig.omnisharp.setup({
 				cmd = {
