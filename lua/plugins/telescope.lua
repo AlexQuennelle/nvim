@@ -15,7 +15,6 @@ return {
 			vim.keymap.set("n", "<leader>fh", function()
 				builtin.find_files({ no_ignore = true, hidden = true })
 			end, {})
-			--vim.keymap.set("n", "<C-p>", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 		end,
 	},

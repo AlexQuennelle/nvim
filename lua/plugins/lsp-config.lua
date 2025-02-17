@@ -5,31 +5,21 @@ return {
 			require("mason").setup()
 		end,
 	},
-	--{
-	--	"jay-babu/mason-nvim-dap.nvim",
-	--	config = function()
-	--		require("mason-nvim-dap").setup({
-	--			ensure_installed = { "codelldb" },
-	--			automatic_installation = true,
-	--		})
-	--	end,
-	--},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"lua_ls",
-					"ts_ls",
-					"omnisharp",
 					"clangd",
+					"eslint",
 					"glsl_analyzer",
+					"hls",
 					"html",
+					"jsonls",
+					"lua_ls",
+					"omnisharp",
 					"tailwindcss",
-					-- Formatters --
-					--"eslint_d",
-					--"prettierd",
-					--"stylua",
+					"ts_ls",
 				},
 				automatic_installation = true,
 			})
@@ -59,17 +49,23 @@ return {
 			lspconfig.hls.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.eslint.setup({
+				settings = {
+					packageManager = "npm",
+				},
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "EslintFixAll",
+					})
+				end,
+				capabilities = capabilities,
+			})
 
 			lspconfig.omnisharp.setup({
 				cmd = {
 					"omnisharp",
 				},
-				-- settings = {
-				-- 	formattingOptions = {
-				-- 		enableEditorConfigSupport = true,
-				-- 		-- organizeImports = true,
-				-- 	},
-				-- },
 				capabilities = capabilities,
 				enable_import_completion = true,
 				organize_imports_on_format = true,
