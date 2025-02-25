@@ -20,6 +20,7 @@ return {
 					"omnisharp",
 					"tailwindcss",
 					"ts_ls",
+					"cmake",
 				},
 				automatic_installation = true,
 			})
@@ -53,12 +54,16 @@ return {
 				settings = {
 					packageManager = "npm",
 				},
+				---@diagnostic disable-next-line: unused-local
 				on_attach = function(client, bufnr)
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
 						command = "EslintFixAll",
 					})
 				end,
+				capabilities = capabilities,
+			})
+			lspconfig.cmake.setup({
 				capabilities = capabilities,
 			})
 
