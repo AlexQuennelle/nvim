@@ -5,11 +5,11 @@ vim.opt_local.expandtab = false
 vim.opt_local.colorcolumn = "80"
 
 -- Build
-vim.keymap.set("n", "<f5>", ":!start build.bat\r\r", { buffer = true })
+vim.keymap.set("n", "<f5>", ":!start build.bat debug\r\r", { buffer = true })
 -- Run
 vim.keymap.set("n", "<s-f5>", function()
 	local cwd = vim.fn.substitute(vim.fn.getcwd(), "^.*\\", "", "")
-	vim.cmd("!start Build/" .. cwd)
+	vim.cmd("!start Bin/" .. cwd)
 	vim.api.nvim_feedkeys("\r", "n", true)
 end, { buffer = true })
 
