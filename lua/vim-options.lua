@@ -6,6 +6,8 @@ vim.opt.colorcolumn = ""
 
 vim.opt.smartindent = true
 
+vim.opt.showmode = false
+
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
