@@ -38,7 +38,6 @@ return {
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "nvim_lsp_signature_help" },
-					{ name = "render-markdown" },
 				}),
 			})
 		end,
