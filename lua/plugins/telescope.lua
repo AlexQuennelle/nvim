@@ -16,6 +16,19 @@ return {
 				builtin.find_files({ no_ignore = true, hidden = true })
 			end, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+			-- hacky fix for picker border
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "TelescopeFindPre",
+				callback = function()
+					vim.opt_local.winborder = "none"
+					vim.api.nvim_create_autocmd("WinLeave", {
+						once = true,
+						callback = function()
+							vim.opt_local.winborder = "rounded"
+						end,
+					})
+				end,
+			})
 		end,
 	},
 	{
