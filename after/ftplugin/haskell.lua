@@ -5,7 +5,8 @@ vim.opt_local.expandtab = true
 
 if vim.loop.os_uname().sysname == "Linux" then
 	vim.keymap.set("n", "<F5>", function()
-		vim.cmd("!wezterm start --cwd . ghci")
+		local file = vim.fn.expand("%")
+		vim.cmd("!wezterm start --cwd . ghci " .. file)
 		vim.api.nvim_feedkeys("\r", "n", true)
 	end, { buffer = true })
 else --Not Linux
