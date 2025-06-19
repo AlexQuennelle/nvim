@@ -10,7 +10,7 @@ if vim.loop.os_uname().sysname == "Linux" then
 	-- Run
 	vim.keymap.set("n", "<f17>", function()
 		vim.print("Launch")
-		vim.cmd("!wezterm start --cwd bin --always-new-process --class floating ./$(basename $PWD)")
+		vim.cmd("!wezterm start --cwd bin --class floating ./$(basename $PWD)")
 		vim.api.nvim_feedkeys("\r", "n", true)
 	end, { buffer = true })
 else --Not Linux
