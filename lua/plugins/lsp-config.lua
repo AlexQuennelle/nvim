@@ -66,6 +66,12 @@ return {
 			lspconfig.cmake.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.hyprls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.bashls.setup({
+				capabilities = capabilities,
+			})
 
 			lspconfig.omnisharp.setup({
 				cmd = {
