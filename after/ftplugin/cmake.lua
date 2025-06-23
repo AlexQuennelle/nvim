@@ -1,3 +1,6 @@
+vim.cmd("runtime! ftplugin/cpp.lua")
+vim.opt_local.tabstop = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.shiftwidth = 2
+vim.opt_local.expandtab = true
 vim.opt_local.colorcolumn = ""
-
-vim.keymap.set("n", "<f5>", ":!start build.bat\r\r", { buffer = true })
