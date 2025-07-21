@@ -14,12 +14,12 @@ return {
 				},
 			},
 			palettes = {
-				all = {
+				carbonfox = {
 					comment = "#276013",
 				},
 			},
 			specs = {
-				all = {
+				carbonfox = {
 					syntax = {
 						builtin1 = "#2560aa",
 						variable = "#d0efff",
@@ -27,7 +27,7 @@ return {
 				},
 			},
 			groups = {
-				all = {
+				carbonfox = {
 					DiagnosticUnnecessary = {
 						fg = "fg2",
 						style = "italic",
@@ -42,9 +42,12 @@ return {
 				},
 			},
 		})
-		vim.cmd.colorscheme("carbonfox")
-		vim.api.nvim_set_hl(0, "@tag.delimiter.html", { link = "@punctuation" })
-		vim.api.nvim_set_hl(0, "@variable.parameter", { link = "@variable.member" })
-		vim.api.nvim_set_hl(0, "@parameter", { link = "@variable.parameter" })
+		--vim.cmd.colorscheme("carbonfox")
+		if 'g:colors_name' == 'carbonfox' then
+			vim.api.nvim_set_hl(0, "@tag.delimiter.html", { link = "@punctuation" })
+			vim.api.nvim_set_hl(0, "@variable.parameter", { link = "@variable.member" })
+			vim.api.nvim_set_hl(0, "@parameter", { link = "@variable.parameter" })
+		elseif 'g:colors_name' == 'terafox' then
+		end
 	end,
 }
