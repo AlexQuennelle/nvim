@@ -1,7 +1,8 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
+		--tag = "0.1.8",
+		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{
@@ -11,12 +12,24 @@ return {
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
+			-- Keymaps
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>fh", function()
-				builtin.find_files({ no_ignore = true, hidden = true })
+				builtin.find_files({
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				})
 			end, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-			-- hacky fix for picker border
+			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+			vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions, {})
+			vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
+			vim.keymap.set("n", "<leader>s", builtin.lsp_document_symbols, {})
+			vim.keymap.set("n", "<leader>td", ":TodoTelescope layout_config={height=0.45} theme=ivy\n", {})
+			vim.keymap.set("n", "<leader>?", builtin.help_tags, {})
+			vim.keymap.set("n", "/", builtin.current_buffer_fuzzy_find, {})
+
+			-- HACK: hacky fix for picker border
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "TelescopeFindPre",
 				callback = function()
@@ -44,6 +57,15 @@ return {
 						override_generic_sorter = true,
 						override_file_sorter = true,
 						case_mode = "smart_case",
+					},
+				},
+				defaults = {},
+				pickers = {
+					diagnostics = {
+						theme = "ivy",
+						layout_config = {
+							height = 0.45,
+						},
 					},
 				},
 			})
