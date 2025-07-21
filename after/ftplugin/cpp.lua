@@ -23,7 +23,9 @@ else --Not Linux
 		vim.api.nvim_feedkeys("\r", "n", true)
 	end, { buffer = true })
 end
-vim.api.nvim_set_hl(0, "@lsp.type.namespace.cpp", { link = "@operator" })
-vim.api.nvim_set_hl(0, "@module.cpp", { link = "@operator" })
-vim.api.nvim_set_hl(0, "@lsp.typemod.class.defaultLibrary.cpp", { link = "Number" })
-vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#274813" })
+if 'g:colors_name' == "carbonfox" then
+	vim.api.nvim_set_hl(0, "@lsp.type.namespace.cpp", { link = "@operator" })
+	vim.api.nvim_set_hl(0, "@module.cpp", { link = "@operator" })
+	vim.api.nvim_set_hl(0, "@lsp.typemod.class.defaultLibrary.cpp", { link = "Number" })
+	vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#274813" })
+end

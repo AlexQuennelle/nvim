@@ -13,4 +13,6 @@ else --Not Linux
 	vim.print("Please Implement")
 end
 
-vim.api.nvim_set_hl(0, "@variable.parameter.haskell", { link = "@property" })
+if 'g:colors_name' == "carbonfox" then
+	vim.api.nvim_set_hl(0, "@variable.parameter.haskell", { link = "@property" })
+end
