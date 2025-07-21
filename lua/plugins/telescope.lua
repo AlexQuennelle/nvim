@@ -5,6 +5,7 @@ return {
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
@@ -29,6 +30,46 @@ return {
 			vim.keymap.set("n", "<leader>?", builtin.help_tags, {})
 			vim.keymap.set("n", "/", builtin.current_buffer_fuzzy_find, {})
 
+			local actions = require("telescope.actions")
+			require("telescope").setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({}),
+					},
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+				},
+				defaults = {
+					mappings = {
+						i = {
+							["<esc>"] = actions.close,
+						},
+					},
+				},
+				pickers = {
+					diagnostics = {
+						theme = "ivy",
+						layout_config = {
+							height = 0.45,
+						},
+					},
+					current_buffer_fuzzy_find = {
+						theme = "dropdown",
+						layout_config = {
+							prompt_position = "top",
+							height = vim.o.lines,
+							width = vim.o.columns,
+						},
+					},
+				},
+			})
+			require("telescope").load_extension("ui-select")
+			require("telescope").load_extension("fzf")
+
 			-- HACK: hacky fix for picker border
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "TelescopeFindPre",
@@ -42,35 +83,6 @@ return {
 					})
 				end,
 			})
-		end,
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		config = function()
-			require("telescope").setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
-					},
-					fzf = {
-						fuzzy = true,
-						override_generic_sorter = true,
-						override_file_sorter = true,
-						case_mode = "smart_case",
-					},
-				},
-				defaults = {},
-				pickers = {
-					diagnostics = {
-						theme = "ivy",
-						layout_config = {
-							height = 0.45,
-						},
-					},
-				},
-			})
-			require("telescope").load_extension("ui-select")
-			require("telescope").load_extension("fzf")
 		end,
 	},
 }
