@@ -39,6 +39,41 @@ vim.opt.listchars = {
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
+function _G.customFoldText()
+	local line = vim.fn.getline(vim.v.foldstart)
+	line = string.rep(" ", vim.fn.indent(vim.v.foldstart)) .. string.gsub(line, "^%s*", "")
+	local lineCount = vim.v.foldend - vim.v.foldstart
+	local lastLine = vim.fn.getline(vim.v.foldend)
+	lastLine = string.gsub(lastLine, "^%s*", "")
+	return line .. " ... " .. lastLine .. " (" .. lineCount .. ")"
+end
+
+function _G.altCustomFoldText()
+	local line = vim.fn.getline(vim.v.foldstart)
+	line = string.rep(" ", vim.fn.indent(vim.v.foldstart)) .. string.gsub(line, "^%s*", "")
+	local nextLine = vim.fn.getline(vim.v.foldstart + 1)
+	nextLine = string.gsub(nextLine, "^%s*", "")
+	if #line >= 70 or string.sub(line, -1) == "," then
+		line = string.gsub(line, "(%(.-,)(.*)", "%1 ...) {")
+		line = string.gsub(line, "(%{)%{.*", "%1")
+		nextLine = ""
+	end
+	local lastLine = vim.fn.getline(vim.v.foldend)
+	lastLine = string.gsub(lastLine, "^%s*", "")
+	lastLine = string.gsub(lastLine, "%}+", "}")
+	local lineCount = vim.v.foldend - vim.v.foldstart
+	if nextLine == "{" then
+		return line .. " " .. nextLine .. "..." .. lastLine .. " (" .. lineCount .. ")"
+	elseif string.sub(line, -1) == "{" then
+		return line .. "...}; (" .. lineCount .. ")"
+	elseif string.sub(lastLine, 1, 1) ~= "}" then
+		return line .. " ... " .. lastLine .. " (" .. lineCount .. ")"
+	else
+		return line .. " ... (" .. lineCount .. ")"
+	end
+end
+
+vim.opt.foldtext = "v:lua.customFoldText()"
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99

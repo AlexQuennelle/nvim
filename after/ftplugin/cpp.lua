@@ -4,6 +4,8 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.expandtab = false
 vim.opt_local.colorcolumn = "80"
 
+vim.opt.foldtext = "v:lua.altCustomFoldText()"
+
 if vim.loop.os_uname().sysname == "Linux" then
 	-- Build
 	vim.keymap.set("n", "<f5>", ":!./build.sh debug\r\r", { buffer = true })
@@ -23,9 +25,11 @@ else --Not Linux
 		vim.api.nvim_feedkeys("\r", "n", true)
 	end, { buffer = true })
 end
-if 'g:colors_name' == "carbonfox" then
+if vim.g.colors_name == "carbonfox" then
 	vim.api.nvim_set_hl(0, "@lsp.type.namespace.cpp", { link = "@operator" })
 	vim.api.nvim_set_hl(0, "@module.cpp", { link = "@operator" })
 	vim.api.nvim_set_hl(0, "@lsp.typemod.class.defaultLibrary.cpp", { link = "Number" })
 	vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#274813" })
+elseif vim.g.colors_name == "rose-pine" then
+	vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#524f67", bold = true })
 end
