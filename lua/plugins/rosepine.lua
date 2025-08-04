@@ -66,7 +66,7 @@ return {
 				-- StatusLine = { fg = "love", bg = "love", blend = 15 },
 				-- VertSplit = { fg = "muted", bg = "muted" },
 				-- Visual = { fg = "base", bg = "text", inherit = false },
-				Folded = { fg = "#6e6a86" },
+				Folded = { fg = "muted", underline = true },
 			},
 
 			before_highlight = function(group, highlight, palette)
