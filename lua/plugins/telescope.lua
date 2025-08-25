@@ -8,7 +8,9 @@ return {
 			"nvim-telescope/telescope-ui-select.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+				-- HACK: Force cmake minimum version
+				build =
+				"cmake -S. -Bbuild -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 			},
 		},
 		config = function()
@@ -29,6 +31,7 @@ return {
 			vim.keymap.set("n", "<leader>td", ":TodoTelescope layout_config={height=0.45} theme=ivy\n", {})
 			vim.keymap.set("n", "<leader>?", builtin.help_tags, {})
 			vim.keymap.set("n", "/", builtin.current_buffer_fuzzy_find, {})
+			vim.keymap.set("n", "z=", builtin.spell_suggest, {})
 
 			local actions = require("telescope.actions")
 			require("telescope").setup({
@@ -65,6 +68,9 @@ return {
 							width = vim.o.columns,
 						},
 					},
+					spell_suggest = {
+						theme = "cursor",
+					}
 				},
 			})
 			require("telescope").load_extension("ui-select")

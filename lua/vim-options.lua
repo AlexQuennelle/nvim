@@ -4,6 +4,9 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 vim.opt.colorcolumn = ""
 
+vim.opt.spell = true
+vim.opt.spelllang = "en_ca"
+
 vim.lsp.set_log_level("DEBUG")
 
 vim.opt.smartindent = true
@@ -217,4 +220,4 @@ vim.filetype.add({
 --keymaps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "<C-t>", ":tab terminal\n")
+vim.keymap.set("n", "<C-t>", ":tab terminal\n:setlocal nospell\n")

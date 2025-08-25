@@ -15,6 +15,7 @@ if vim.loop.os_uname().sysname == "Linux" then
 		vim.cmd("!wezterm start --cwd bin --class floating ./$(basename $PWD)")
 		vim.api.nvim_feedkeys("\r", "n", true)
 	end, { buffer = true })
+	--vim.keymap.set("n", "<C-b>", "o#ifndef NDEBUG\nraise(SIGTRAP);\n#endif<Esc>")
 else --Not Linux
 	-- Build
 	vim.keymap.set("n", "<f5>", ":!start build.bat debug\r\r", { buffer = true })
