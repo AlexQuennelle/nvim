@@ -13,7 +13,7 @@ return {
 					"clangd",
 					"eslint",
 					"glsl_analyzer",
-					"hls",
+					--"hls",
 					"html",
 					"jsonls",
 					"lua_ls",
@@ -28,29 +28,51 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		--dependencies = { 'saghen/blink.cmp' },
+		--opts = {
+		--	servers = {
+		--		lua_ls = {}
+		--	}
+		--},
+		--config = function(_, opts)
+		--	local lspconfig = require('lspconfig')
+		--	for server, config in pairs(opts.servers) do
+		--		config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+		--		lspconfig[server].setup(config)
+		--	end
+		--end
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
+			--local lspconfig = require("lspconfig")
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 			})
-			lspconfig.ts_ls.setup({
+			vim.lsp.enable({ "lua_ls" })
+			--lspconfig.lua_ls.setup({
+			--	capabilities = capabilities,
+			--})
+			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
 			})
+			vim.lsp.enable({ "ts_ls" })
 
-			lspconfig.clangd.setup({
+			vim.lsp.config("clangd", {
 				capabilities = capabilities,
 			})
-			lspconfig.glsl_analyzer.setup({
+			vim.lsp.enable({ "clangd" })
+			vim.lsp.config("glsl_analyzer", {
 				capabilities = capabilities,
 			})
-			lspconfig.jsonls.setup({
+			vim.lsp.enable({ "glsl_analyzer" })
+			vim.lsp.config("jsonls", {
 				capabilities = capabilities,
 			})
-			lspconfig.hls.setup({
+			vim.lsp.enable({ "jsonls" })
+			vim.lsp.config("hls", {
 				capabilities = capabilities,
 			})
-			lspconfig.eslint.setup({
+			vim.lsp.enable({ "hls" })
+			vim.lsp.config("eslint", {
 				settings = {
 					packageManager = "npm",
 				},
@@ -63,17 +85,21 @@ return {
 				end,
 				capabilities = capabilities,
 			})
-			lspconfig.cmake.setup({
+			vim.lsp.enable({ "eslint" })
+			vim.lsp.config("cmake", {
 				capabilities = capabilities,
 			})
-			lspconfig.hyprls.setup({
+			vim.lsp.enable({ "cmake" })
+			vim.lsp.config("hyprls", {
 				capabilities = capabilities,
 			})
-			lspconfig.bashls.setup({
+			vim.lsp.enable({ "hyprls" })
+			vim.lsp.config("bashls", {
 				capabilities = capabilities,
 			})
+			vim.lsp.enable({ "bashls" })
 
-			lspconfig.omnisharp.setup({
+			vim.lsp.config("omnisharp", {
 				cmd = {
 					"omnisharp",
 				},
@@ -85,6 +111,7 @@ return {
 					return vim.loop.cwd()
 				end,
 			})
+			vim.lsp.enable({ "omnisharp" })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
