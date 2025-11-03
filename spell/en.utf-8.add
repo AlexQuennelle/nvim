@@ -20,3 +20,8 @@ borked
 config
 centered
 namespace
+raylib
+color
+Quantize
+hardcode
+resizing
