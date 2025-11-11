@@ -7,7 +7,8 @@ vim.opt.colorcolumn = ""
 vim.opt.spell = true
 vim.opt.spelllang = "en_ca"
 
-vim.lsp.set_log_level("DEBUG")
+-- vim.lsp.set_log_level("DEBUG")
+vim.lsp.inlay_hint.enable()
 
 vim.opt.smartindent = true
 

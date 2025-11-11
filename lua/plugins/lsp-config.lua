@@ -2,7 +2,9 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
-			require("mason").setup()
+			require("mason").setup({
+				registries = { "github:crashdummyy/mason-registry", "github:mason-org/mason-registry" },
+			})
 		end,
 	},
 	{
@@ -17,7 +19,8 @@ return {
 					"html",
 					"jsonls",
 					"lua_ls",
-					"omnisharp",
+					-- "roslyn",
+					-- "omnisharp",
 					"tailwindcss",
 					"ts_ls",
 					"cmake",
@@ -99,19 +102,33 @@ return {
 			})
 			vim.lsp.enable({ "bashls" })
 
-			vim.lsp.config("omnisharp", {
-				cmd = {
-					"omnisharp",
-				},
+			vim.lsp.enable({ "roslyn" })
+			vim.lsp.config("roslyn", {
 				capabilities = capabilities,
-				enable_import_completion = true,
-				organize_imports_on_format = true,
-				enable_roslyn_analuzers = true,
-				root_dir = function()
-					return vim.loop.cwd()
-				end,
+				settings = {
+					["csharp|inlay_hints"] = {
+						csharp_enable_inlay_hints_for_implicit_object_creation = true,
+						csharp_enable_inlay_hints_for_implicit_variable_types = true,
+					},
+					["csharp|code_lens"] = {
+						dotnet_enable_references_code_lens = true,
+					},
+				},
 			})
-			vim.lsp.enable({ "omnisharp" })
+
+			-- vim.lsp.config("omnisharp", {
+			-- 	cmd = {
+			-- 		"/usr/bin/OmniSharp",
+			-- 	},
+			-- 	capabilities = capabilities,
+			-- 	enable_import_completion = true,
+			-- 	organize_imports_on_format = true,
+			-- 	enable_roslyn_analyzers = true,
+			-- 	root_dir = function()
+			-- 		return vim.loop.cwd()
+			-- 	end,
+			-- })
+			-- vim.lsp.enable({ "omnisharp" })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

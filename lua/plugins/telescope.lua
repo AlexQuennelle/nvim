@@ -9,8 +9,7 @@ return {
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				-- HACK: Force cmake minimum version
-				build =
-				"cmake -S. -Bbuild -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+				build = "cmake -S. -Bbuild -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 			},
 		},
 		config = function()
@@ -23,7 +22,8 @@ return {
 				})
 			end, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
+			vim.keymap.set("n", "<leader>fd", ":Telescope diagnostics bufnr=0\n", {})
+			vim.keymap.set("n", "<leader>fD", builtin.diagnostics, {})
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 			vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions, {})
 			vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
@@ -70,7 +70,7 @@ return {
 					},
 					spell_suggest = {
 						theme = "cursor",
-					}
+					},
 				},
 			})
 			require("telescope").load_extension("ui-select")
