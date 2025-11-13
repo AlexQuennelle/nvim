@@ -19,6 +19,7 @@ return {
 					"html",
 					"jsonls",
 					"lua_ls",
+					"rust_analyzer",
 					-- "roslyn",
 					-- "omnisharp",
 					"tailwindcss",
@@ -101,6 +102,10 @@ return {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable({ "bashls" })
+			vim.lsp.config("rust_analyzer", {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable({ "rust_analyzer" })
 
 			vim.lsp.enable({ "roslyn" })
 			vim.lsp.config("roslyn", {
