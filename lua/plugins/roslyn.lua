@@ -14,14 +14,14 @@ return {
 		-- want to use. If it returns `nil`, then it falls back to guessing the target like normal
 		-- Example:
 		--
-		-- choose_target = function(target)
-		--     return vim.iter(target):find(function(item)
-		--         if string.match(item, "Foo.sln") then
-		--             return item
-		--         end
-		--     end)
-		-- end
-		choose_target = nil,
+		choose_target = function(target)
+		    return vim.iter(target):find(function(item)
+		        if string.match(item, ".*.sln") then
+		            return item
+		        end
+		    end)
+		end,
+		-- choose_target = nil,
 
 		-- Optional function that takes the selected target as the only argument.
 		-- Returns a boolean of whether it should be ignored to attach to or not
@@ -42,7 +42,7 @@ return {
 		-- Whether or not to lock the solution target after the first attach.
 		-- This will always attach to the target in `vim.g.roslyn_nvim_selected_solution`.
 		-- NOTE: You can use `:Roslyn target` to change the target
-		lock_target = false,
+		lock_target = true,
 
 		-- If the plugin should silence notifications about initialization
 		silent = false,

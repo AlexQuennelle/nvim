@@ -6,6 +6,8 @@ vim.opt_local.colorcolumn = "80"
 
 vim.opt.foldtext = "v:lua.altCustomFoldText()"
 
+vim.lsp.inlay_hint.enable(false)
+
 if vim.loop.os_uname().sysname == "Linux" then
 	-- Build
 	vim.keymap.set("n", "<f5>", ":!./build.sh debug\r\r", { buffer = true })
@@ -33,4 +35,5 @@ if vim.g.colors_name == "carbonfox" then
 	vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#274813" })
 elseif vim.g.colors_name == "rose-pine" then
 	vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#524f67", bold = true })
+	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#6e6a86" })
 end

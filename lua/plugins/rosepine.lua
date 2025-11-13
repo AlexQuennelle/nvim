@@ -67,6 +67,7 @@ return {
 				-- VertSplit = { fg = "muted", bg = "muted" },
 				-- Visual = { fg = "base", bg = "text", inherit = false },
 				Folded = { fg = "muted", underline = true },
+				-- LspInlayHint = { fg = "muted" },
 			},
 
 			before_highlight = function(group, highlight, palette)
