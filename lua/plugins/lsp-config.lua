@@ -22,7 +22,7 @@ return {
 					"rust_analyzer",
 					-- "roslyn",
 					-- "omnisharp",
-					"tailwindcss",
+					-- "tailwindcss",
 					"ts_ls",
 					"cmake",
 				},
@@ -59,6 +59,29 @@ return {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable({ "ts_ls" })
+			vim.lsp.config("html", {
+				capabilities = capabilities,
+				nit_options = {
+					provideFormatter = true,
+					indentInnerHtml = false,
+					embeddedLanguages = { css = true, javascript = true },
+					configurationSection = { "html", "css", "javascript" },
+				},
+				settings = {
+					html = {
+						-- format = {
+						-- 	templating = true,
+						-- 	wrapLineLength = 80,
+						-- 	wrapAttributes = "auto",
+						-- },
+						hover = {
+							documentation = true,
+							references = true,
+						},
+					},
+				},
+			})
+			vim.lsp.enable({ "html" })
 
 			vim.lsp.config("clangd", {
 				capabilities = capabilities,
@@ -155,7 +178,7 @@ return {
 			vim.keymap.set("n", "<C-e>", vim.diagnostic.open_float, {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>R", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+			-- vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 		end,
 	},
 }
