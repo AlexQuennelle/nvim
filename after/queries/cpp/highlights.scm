@@ -4,6 +4,11 @@
   (#set! injection.language "doxygen"))
 ((comment) @comment.documentation @nospell
   (#match? @comment.documentation "// NOLINT"))
+((operator_name) @operator
+				 (#set! priority 120))
+(template_function (identifier) @operator
+				 (#match? @operator ".*_cast")
+				 (#set! priority 128)) 
 ; (
 ;  (type_parameter_declaration) @Comment
 ;  (#match? @Comment "typename")
