@@ -4,6 +4,10 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.expandtab = false
 vim.opt_local.colorcolumn = "80"
 
+vim.treesitter.start()
+
+vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldmethod = "expr"
 vim.opt.foldtext = "v:lua.altCustomFoldText()"
 
 vim.lsp.inlay_hint.enable(false)

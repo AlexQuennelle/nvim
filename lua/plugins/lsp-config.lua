@@ -24,7 +24,7 @@ return {
 					-- "omnisharp",
 					-- "tailwindcss",
 					"ts_ls",
-					"cmake",
+					"neocmake",
 				},
 				automatic_installation = true,
 			})
@@ -114,10 +114,10 @@ return {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable({ "eslint" })
-			vim.lsp.config("cmake", {
+			vim.lsp.config("neocmake", {
 				capabilities = capabilities,
 			})
-			vim.lsp.enable({ "cmake" })
+			vim.lsp.enable({ "neocmake" })
 			vim.lsp.config("hyprls", {
 				capabilities = capabilities,
 			})
