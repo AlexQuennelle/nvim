@@ -85,6 +85,7 @@ return {
 
 			vim.lsp.config("clangd", {
 				capabilities = capabilities,
+				cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=never" },
 			})
 			vim.lsp.enable({ "clangd" })
 			vim.lsp.config("glsl_analyzer", {

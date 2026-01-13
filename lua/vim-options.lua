@@ -207,6 +207,7 @@ vim.opt.fillchars = { fold = " " }
 
 vim.filetype.add({
 	extension = {
+		hlsl = "hlsl",
 		vert = "vert",
 		frag = "frag",
 		tesc = "tesc",
