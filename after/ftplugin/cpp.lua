@@ -12,12 +12,9 @@ vim.opt.foldtext = "v:lua.altCustomFoldText()"
 
 vim.lsp.inlay_hint.enable(false)
 
-if os.getenv("WSL_INTEROP") ~= nil or os.getenv("WSL_DISTRO_NAME") ~= nil then
-	-- Check for WSL
-	vim.keymap.set("n", "<f5>", ":!Powershell.exe /c start build.bat debug\r\r", { buffer = true })
-elseif vim.loop.os_uname().sysname == "Linux" then
+if vim.loop.os_uname().sysname == "Linux" then
 	-- Build
-	vim.keymap.set("n", "<f5>", ":!./build.sh debug\r\r", { buffer = true })
+	vim.keymap.set("n", "<f5>", ":DapNew\r", { buffer = true, silent = true })
 	-- Run
 	vim.keymap.set("n", "<f17>", function()
 		vim.print("Launch")
