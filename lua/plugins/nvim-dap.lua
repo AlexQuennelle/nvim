@@ -66,6 +66,8 @@ return {
 		}
 		dap.configurations.cpp = dap.configurations.c
 
+		require("nvim-dap-unity").setup()
+
 		dap.adapters.coreclr = {
 			type = "executable",
 			command = vim.fn.stdpath("data") .. "/mason/bin/netcoredbg",
@@ -107,6 +109,8 @@ return {
 					"breakpoints",
 					"threads",
 					"repl",
+					"console",
+					"sessions",
 				},
 			},
 		})
@@ -148,7 +152,7 @@ return {
 					}
 					require("telescope.pickers")
 						.new(opts, {
-							prompt_title = "Test Title",
+							prompt_title = "DAP options",
 							finder = require("telescope.finders").new_table({
 								results = list,
 								entry_maker = function(entry)

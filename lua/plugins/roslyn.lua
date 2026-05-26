@@ -1,5 +1,6 @@
 return {
 	"seblyng/roslyn.nvim",
+	ft = { "cs" },
 	---@module 'roslyn.config'
 	---@type RoslynNvimConfig
 	opts = {
@@ -15,11 +16,11 @@ return {
 		-- Example:
 		--
 		choose_target = function(target)
-		    return vim.iter(target):find(function(item)
-		        if string.match(item, ".*.sln") then
-		            return item
-		        end
-		    end)
+			return vim.iter(target):find(function(item)
+				if string.match(item, ".*.sln") then
+					return item
+				end
+			end)
 		end,
 		-- choose_target = nil,
 
