@@ -50,6 +50,7 @@ return {
 			--local lspconfig = require("lspconfig")
 			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
+				root_markers = { ".luarc.json" },
 			})
 			vim.lsp.enable({ "lua_ls" })
 			--lspconfig.lua_ls.setup({
