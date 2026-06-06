@@ -110,7 +110,7 @@ return {
 					"threads",
 					"repl",
 					"console",
-					"sessions",
+					-- "sessions",
 				},
 			},
 		})
@@ -177,13 +177,13 @@ return {
 						:find()
 				end, { buffer = buf })
 			end
-			vim.keymap.set("n", "<Down>", dap.step_over, { silent = true })
-			vim.keymap.set("n", "<Right>", dap.step_into, { silent = true })
 			vim.keymap.set("n", "<Up>", dap.step_out, { silent = true })
+			vim.keymap.set("n", "<Down>", dap.step_into, { silent = true })
+			vim.keymap.set("n", "<Right>", dap.step_over, { silent = true })
 			vim.keymap.set("n", "<Left>", dap.step_back, { silent = true })
 		end
 
-		dap.listeners.after["event_terminated"]["me"] = function()
+		local function TerminationHandler()
 			require("dap-view").close()
 			for i, buf in ipairs(bufRestore) do
 				for _, keymap in pairs(buf) do
@@ -210,6 +210,19 @@ return {
 				end
 			end
 			bufRestore = {}
+		end
+		dap.listeners.after["event_terminated"]["me"] = function()
+			TerminationHandler()
+		end
+		dap.listeners.after["event_exited"]["me"] = function()
+			TerminationHandler()
+			vim.keymap.del("n", "<Down>")
+			vim.keymap.del("n", "<Right>")
+			vim.keymap.del("n", "<Up>")
+			vim.keymap.del("n", "<Left>")
+		end
+		dap.listeners.before["disconnect"]["me"] = function()
+			TerminationHandler()
 			vim.keymap.del("n", "<Down>")
 			vim.keymap.del("n", "<Right>")
 			vim.keymap.del("n", "<Up>")
