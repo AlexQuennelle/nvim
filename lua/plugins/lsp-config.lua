@@ -3,7 +3,10 @@ return {
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
-				registries = { "github:crashdummyy/mason-registry", "github:mason-org/mason-registry" },
+				registries = {
+					-- "github:crashdummyy/mason-registry",
+					"github:mason-org/mason-registry",
+				},
 			})
 		end,
 	},
@@ -20,9 +23,7 @@ return {
 					"jsonls",
 					"lua_ls",
 					"rust_analyzer",
-					-- "roslyn",
-					-- "omnisharp",
-					-- "tailwindcss",
+					"roslyn_ls",
 					"ts_ls",
 					"neocmake",
 				},
@@ -102,10 +103,6 @@ return {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable({ "neocmake" })
-			vim.lsp.config("hyprls", {
-				capabilities = capabilities,
-			})
-			vim.lsp.enable({ "hyprls" })
 			vim.lsp.config("bashls", {
 				capabilities = capabilities,
 			})
@@ -115,43 +112,11 @@ return {
 			})
 			vim.lsp.enable({ "rust_analyzer" })
 
-			vim.lsp.config("roslyn", {
+			vim.lsp.enable({ "roslyn_ls" })
+			vim.lsp.config("roslyn_ls", {
 				capabilities = capabilities,
-				settings = {
-					codelens = { enable = true },
-					["csharp|inlay_hints"] = {
-						csharp_enable_inlay_hints_for_implicit_object_creation = true,
-						csharp_enable_inlay_hints_for_implicit_variable_types = true,
-						csharp_enable_inlay_hints_for_lambda_parameter_types = true,
-						csharp_enable_inlay_hints_for_types = false,
-						dotnet_enable_inlay_hints_for_indexer_parameters = true,
-						dotnet_enable_inlay_hints_for_literal_parameters = true,
-						dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-						dotnet_enable_inlay_hints_for_other_parameters = true,
-						dotnet_enable_inlay_hints_for_parameters = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-					},
-					["csharp|code_lens"] = {
-						dotnet_enable_references_code_lens = true,
-					},
-					["csharp|completions"] = {
-						dotnet_show_completion_items_from_unimported_namespaces = true,
-						dotnet_show_name_completion_suggestions = true,
-					},
-				},
-				init_options = {
-					documentationSupport = true,
-					documentationOptions = {
-						computeCompoundComments = true,
-						provideVisualStudioStyleDocumentation = true,
-					},
-				},
 			})
-			vim.lsp.enable({ "roslyn" })
 
-			-- vim.lsp.codelens.enable()
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
