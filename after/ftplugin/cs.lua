@@ -16,6 +16,12 @@ if vim.loop.os_uname().sysname == "Linux" then
 	end, { buffer = true })
 end
 
+vim.keymap.set("n", "<leader>ff", function()
+	require("telescope.builtin").find_files({
+		find_command = { "rg", "--files", "--glob", "!**/*.meta" },
+	})
+end, {})
+
 --highlight groups
 vim.api.nvim_set_hl(0, "@comment.documentation.c_sharp", { fg = "#524f67" })
 vim.api.nvim_set_hl(0, "@lsp.type.xmlDocCommentText.cs", { link = "comment" })

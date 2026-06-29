@@ -17,3 +17,5 @@ if vim.loop.os_uname().sysname == "Linux" then
 else --Not Linux
 	vim.print("Please Implement")
 end
+
+vim.api.nvim_set_hl(0, "@signature", { underline = true, sp = "#908caa" })
