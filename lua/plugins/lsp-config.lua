@@ -77,14 +77,33 @@ return {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable({ "glsl_analyzer" })
+			vim.lsp.config("hlsl_server", {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable("hlsl_server")
 			vim.lsp.config("jsonls", {
 				capabilities = capabilities,
 			})
 			vim.lsp.enable({ "jsonls" })
 			vim.lsp.config("hls", {
 				capabilities = capabilities,
+				settings = {
+					haskell = {
+						hlintOn = true,
+						plugin = {
+							hlint = {
+								globalOn = true,
+								codeActionsOn = true,
+							},
+						},
+					},
+				},
 			})
 			vim.lsp.enable({ "hls" })
+			-- vim.lsp.config("hlint", {
+			-- 	capabilities = capabilities,
+			-- })
+			-- vim.lsp.enable({ "hlint" })
 			vim.lsp.config("eslint", {
 				settings = {
 					packageManager = "npm",
