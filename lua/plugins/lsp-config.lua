@@ -73,6 +73,11 @@ return {
 				cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=never" },
 			})
 			vim.lsp.enable({ "clangd" })
+			vim.lsp.config("qmlls", {
+				capabilities = capabilities,
+				cmd = { "qmlls", "-b", vim.fn.getcwd() .. "/build/" },
+			})
+			vim.lsp.enable("qmlls")
 			vim.lsp.config("glsl_analyzer", {
 				capabilities = capabilities,
 			})

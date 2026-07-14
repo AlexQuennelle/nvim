@@ -7,6 +7,7 @@ return {
 				lua = { "stylua" },
 				javascript = { "prettierd" },
 				html = { "prettierd" },
+				kdl = { "kdlfmt" },
 			},
 			default_format_opts = {
 				lsp_format = "fallback",

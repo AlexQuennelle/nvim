@@ -226,6 +226,7 @@ vim.filetype.add({
 		comp = "comp",
 		meta = "yaml",
 		inputactions = "json",
+		conf = "ini",
 	},
 })
 
