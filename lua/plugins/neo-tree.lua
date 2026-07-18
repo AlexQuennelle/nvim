@@ -8,7 +8,7 @@ return {
 		-- "3rd/image.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left\n")
+		vim.keymap.set("n", "<C-n>", ":Neotree float toggle\n")
 		require("neo-tree").setup({
 			close_if_last_window = false,
 			popup_border_style = "NC",
@@ -87,22 +87,22 @@ return {
 				},
 				file_size = {
 					enabled = true,
-					width = 12,     -- width of the column
+					width = 12, -- width of the column
 					required_width = 64, -- min width of window required to show this column
 				},
 				type = {
 					enabled = true,
-					width = 10,      -- width of the column
+					width = 10, -- width of the column
 					required_width = 122, -- min width of window required to show this column
 				},
 				last_modified = {
 					enabled = true,
-					width = 20,     -- width of the column
+					width = 20, -- width of the column
 					required_width = 88, -- min width of window required to show this column
 				},
 				created = {
 					enabled = true,
-					width = 20,      -- width of the column
+					width = 20, -- width of the column
 					required_width = 110, -- min width of window required to show this column
 				},
 				symlink_target = {
@@ -274,6 +274,7 @@ return {
 						-- ["<esc>"] = "noop", -- if you want to use normal mode
 						-- ["key"] = function(state, scroll_padding) ... end,
 					},
+					popup = {},
 				},
 
 				commands = {},
