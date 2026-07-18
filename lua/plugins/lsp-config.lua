@@ -2,7 +2,12 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
-			require("mason").setup()
+			require("mason").setup({
+				registries = {
+					-- "github:crashdummyy/mason-registry",
+					"github:mason-org/mason-registry",
+				},
+			})
 		end,
 	},
 	{
@@ -13,14 +18,14 @@ return {
 					"clangd",
 					"eslint",
 					"glsl_analyzer",
-					"hls",
+					--"hls",
 					"html",
 					"jsonls",
 					"lua_ls",
-					"omnisharp",
-					"tailwindcss",
+					"rust_analyzer",
+					"roslyn_ls",
 					"ts_ls",
-					"cmake",
+					"neocmake",
 				},
 				automatic_installation = true,
 			})
@@ -30,27 +35,81 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
+				root_markers = { ".luarc.json" },
+			})
+			vim.lsp.enable({ "lua_ls" })
+			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
 			})
-			lspconfig.ts_ls.setup({
+			vim.lsp.enable({ "ts_ls" })
+			vim.lsp.config("html", {
 				capabilities = capabilities,
+				nit_options = {
+					provideFormatter = true,
+					indentInnerHtml = false,
+					embeddedLanguages = { css = true, javascript = true },
+					configurationSection = { "html", "css", "javascript" },
+				},
+				settings = {
+					html = {
+						-- format = {
+						-- 	templating = true,
+						-- 	wrapLineLength = 80,
+						-- 	wrapAttributes = "auto",
+						-- },
+						hover = {
+							documentation = true,
+							references = true,
+						},
+					},
+				},
 			})
+			vim.lsp.enable({ "html" })
 
-			lspconfig.clangd.setup({
+			vim.lsp.config("clangd", {
+				capabilities = capabilities,
+				cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=never" },
+			})
+			vim.lsp.enable({ "clangd" })
+			vim.lsp.config("qmlls", {
+				capabilities = capabilities,
+				cmd = { "qmlls", "-b", vim.fn.getcwd() .. "/build/" },
+			})
+			vim.lsp.enable("qmlls")
+			vim.lsp.config("glsl_analyzer", {
 				capabilities = capabilities,
 			})
-			lspconfig.glsl_analyzer.setup({
+			vim.lsp.enable({ "glsl_analyzer" })
+			vim.lsp.config("hlsl_server", {
 				capabilities = capabilities,
 			})
-			lspconfig.jsonls.setup({
+			vim.lsp.enable("hlsl_server")
+			vim.lsp.config("jsonls", {
 				capabilities = capabilities,
 			})
-			lspconfig.hls.setup({
+			vim.lsp.enable({ "jsonls" })
+			vim.lsp.config("hls", {
 				capabilities = capabilities,
+				settings = {
+					haskell = {
+						hlintOn = true,
+						plugin = {
+							hlint = {
+								globalOn = true,
+								codeActionsOn = true,
+							},
+						},
+					},
+				},
 			})
-			lspconfig.eslint.setup({
+			vim.lsp.enable({ "hls" })
+			-- vim.lsp.config("hlint", {
+			-- 	capabilities = capabilities,
+			-- })
+			-- vim.lsp.enable({ "hlint" })
+			vim.lsp.config("eslint", {
 				settings = {
 					packageManager = "npm",
 				},
@@ -63,27 +122,23 @@ return {
 				end,
 				capabilities = capabilities,
 			})
-			lspconfig.cmake.setup({
+			vim.lsp.enable({ "eslint" })
+			vim.lsp.config("neocmake", {
 				capabilities = capabilities,
 			})
-			lspconfig.hyprls.setup({
+			vim.lsp.enable({ "neocmake" })
+			vim.lsp.config("bashls", {
 				capabilities = capabilities,
 			})
-			lspconfig.bashls.setup({
+			vim.lsp.enable({ "bashls" })
+			vim.lsp.config("rust_analyzer", {
 				capabilities = capabilities,
 			})
+			vim.lsp.enable({ "rust_analyzer" })
 
-			lspconfig.omnisharp.setup({
-				cmd = {
-					"omnisharp",
-				},
+			vim.lsp.enable({ "roslyn_ls" })
+			vim.lsp.config("roslyn_ls", {
 				capabilities = capabilities,
-				enable_import_completion = true,
-				organize_imports_on_format = true,
-				enable_roslyn_analuzers = true,
-				root_dir = function()
-					return vim.loop.cwd()
-				end,
 			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
@@ -92,7 +147,7 @@ return {
 			vim.keymap.set("n", "<C-e>", vim.diagnostic.open_float, {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>R", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+			-- vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 		end,
 	},
 }

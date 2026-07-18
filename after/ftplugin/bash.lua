@@ -1,4 +1,4 @@
-vim.opt_local.colorcolumn = "0"
+vim.opt.colorcolumn = "0"
 
 vim.treesitter.start()
 

@@ -3,6 +3,11 @@ vim.opt_local.softtabstop = 2
 vim.opt_local.shiftwidth = 2
 vim.opt_local.expandtab = true
 
+vim.treesitter.start()
+
+vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldmethod = "expr"
+
 if vim.loop.os_uname().sysname == "Linux" then
 	vim.keymap.set("n", "<F5>", function()
 		local file = vim.fn.expand("%")
@@ -13,4 +18,4 @@ else --Not Linux
 	vim.print("Please Implement")
 end
 
-vim.api.nvim_set_hl(0, "@variable.parameter.haskell", { link = "@property" })
+vim.api.nvim_set_hl(0, "@signature", { underline = true, sp = "#908caa" })

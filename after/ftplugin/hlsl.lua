@@ -1,7 +1,6 @@
-vim.cmd("runtime! ftplugin/cpp.lua")
-vim.opt_local.tabstop = 4
-vim.opt_local.softtabstop = 4
-vim.opt_local.shiftwidth = 4
+vim.opt_local.tabstop = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.shiftwidth = 2
 vim.opt_local.expandtab = true
 vim.opt_local.colorcolumn = "80"
 
@@ -9,4 +8,3 @@ vim.treesitter.start()
 
 vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.wo[0][0].foldmethod = "expr"
-vim.opt.foldtext = "v:lua.altCustomFoldText()"

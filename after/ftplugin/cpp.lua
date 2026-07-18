@@ -4,15 +4,24 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.expandtab = false
 vim.opt_local.colorcolumn = "80"
 
+vim.treesitter.start()
+
+vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldmethod = "expr"
+vim.opt.foldtext = "v:lua.altCustomFoldText()"
+
+vim.lsp.inlay_hint.enable(false)
+
 if vim.loop.os_uname().sysname == "Linux" then
 	-- Build
-	vim.keymap.set("n", "<f5>", ":!./build.sh debug\r\r", { buffer = true })
+	vim.keymap.set("n", "<f5>", ":DapNew\r", { buffer = true, silent = true })
 	-- Run
 	vim.keymap.set("n", "<f17>", function()
 		vim.print("Launch")
 		vim.cmd("!wezterm start --cwd bin --class floating ./$(basename $PWD)")
 		vim.api.nvim_feedkeys("\r", "n", true)
 	end, { buffer = true })
+	--vim.keymap.set("n", "<C-b>", "o#ifndef NDEBUG\nraise(SIGTRAP);\n#endif<Esc>")
 else --Not Linux
 	-- Build
 	vim.keymap.set("n", "<f5>", ":!start build.bat debug\r\r", { buffer = true })
@@ -23,7 +32,12 @@ else --Not Linux
 		vim.api.nvim_feedkeys("\r", "n", true)
 	end, { buffer = true })
 end
-vim.api.nvim_set_hl(0, "@lsp.type.namespace.cpp", { link = "@operator" })
-vim.api.nvim_set_hl(0, "@module.cpp", { link = "@operator" })
-vim.api.nvim_set_hl(0, "@lsp.typemod.class.defaultLibrary.cpp", { link = "Number" })
-vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#274813" })
+if vim.g.colors_name == "carbonfox" then
+	vim.api.nvim_set_hl(0, "@lsp.type.namespace.cpp", { link = "@operator" })
+	vim.api.nvim_set_hl(0, "@module.cpp", { link = "@operator" })
+	vim.api.nvim_set_hl(0, "@lsp.typemod.class.defaultLibrary.cpp", { link = "Number" })
+	vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#274813" })
+elseif vim.g.colors_name == "rose-pine" then
+	vim.api.nvim_set_hl(0, "@comment.documentation.cpp", { fg = "#524f67", bold = true })
+	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#6e6a86" })
+end
