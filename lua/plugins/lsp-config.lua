@@ -70,7 +70,13 @@ return {
 
 			vim.lsp.config("clangd", {
 				capabilities = capabilities,
-				cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=never" },
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					"--header-insertion=never",
+					"--query-driver=/usr/bin/gcc,/usr/bin/g++",
+				},
 			})
 			vim.lsp.enable({ "clangd" })
 			vim.lsp.config("qmlls", {
